@@ -20,7 +20,7 @@ jobs:
           import base64, json, os
           from urllib.request import Request, urlopen
 
-          base = "https://api.github.com/repos/anes2321-pixel/Anes-V1"
+          base = "https://api.github.com/repos/anes2321-pixel/Anes-V1-Updates"
           headers = {
               "Accept": "application/vnd.github+json",
               "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",

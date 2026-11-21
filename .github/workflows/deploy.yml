@@ -36,7 +36,7 @@ jobs:
           from urllib.request import Request, urlopen
 
           request = Request(
-              "https://api.github.com/repos/anes2321-pixel/Anes-V1/releases/latest",
+              "https://api.github.com/repos/anes2321-pixel/Anes-V1-Updates/releases/latest",
               headers={
                   "Accept": "application/vnd.github+json",
                   "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
