@@ -4,6 +4,8 @@ Statische, eigenständige Website für Anes V1. Sie verwendet keine Build-Tools 
 
 Live: <https://anes2321-pixel.github.io/Anes-V1/>
 
+Mod-Download: <https://github.com/anes2321-pixel/Anes-V1/releases/download/v23.1.0/Anes-V1-23.1.jar>
+
 ## GitHub Pages veröffentlichen
 
 Der Workflow `.github/workflows/deploy.yml` veröffentlicht die Seite bei jedem Push auf `main`.
