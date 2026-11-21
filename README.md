@@ -4,7 +4,11 @@ Statische, eigenständige Website für Anes V1. Sie verwendet keine Build-Tools 
 
 Live: <https://anes2321-pixel.github.io/Anes-V1/>
 
-Mod-Download: <https://github.com/anes2321-pixel/Anes-V1/releases/download/v23.1.0/Anes-V1-23.1.jar>
+Mod-Download (immer neueste Version): <https://github.com/anes2321-pixel/Anes-V1/releases/latest/download/Anes-V1.jar>
+
+## Automatische Mod-Updates
+
+Installiere **Anes V1 v23.2.0** einmal im Minecraft-Ordner `mods`. Der eingebaute Updater prüft beim Start neue GitHub-Releases, lädt `Anes-V1.jar` herunter und setzt die Datei nach dem Beenden von Minecraft ein. Für jede neue Mod-Version muss eine höhere Release-Version veröffentlicht werden; der Release muss die Datei `Anes-V1.jar` enthalten. Der Release-Workflow aktualisiert anschließend die Versionsdatei und veröffentlicht die Website erneut.
 
 ## GitHub Pages veröffentlichen
 
