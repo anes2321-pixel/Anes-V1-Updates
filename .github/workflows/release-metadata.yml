@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import base64, json, os
+          import base64, json, os, time
           from urllib.request import Request, urlopen
 
           base = "https://api.github.com/repos/anes2321-pixel/Anes-V1-Updates"
@@ -38,10 +38,15 @@ jobs:
               with urlopen(request, timeout=30) as response:
                   return json.load(response) if response.status != 204 else None
 
-          release = api("/releases/latest")
-          tag = release.get("tag_name", "")
-          if not tag or not any(a.get("name") == "Anes-V1.jar" for a in release.get("assets", [])):
-              raise SystemExit("Latest release is missing its Anes-V1.jar asset")
+          release = None
+          for attempt in range(30):
+              release = api("/releases/latest")
+              if release.get("tag_name") and any(a.get("name") == "Anes-V1.jar" for a in release.get("assets", [])):
+                  break
+              time.sleep(10)
+          else:
+              raise SystemExit("Latest release is still missing its Anes-V1.jar asset")
+          tag = release["tag_name"]
           data = json.dumps({
               "version": tag.removeprefix("v"),
               "build": 0,

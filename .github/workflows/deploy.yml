@@ -31,7 +31,7 @@ jobs:
           MINECRAFT_VERSION: 1.21.11
         run: |
           python3 - <<'PY'
-          import json, os
+          import json, os, time
           from pathlib import Path
           from urllib.request import Request, urlopen
 
@@ -43,14 +43,16 @@ jobs:
                   "User-Agent": "Anes-V1-updater-metadata",
               },
           )
-          with urlopen(request, timeout=30) as response:
-              release = json.load(response)
-          tag = release.get("tag_name", "")
-          if not tag:
-              raise SystemExit("Latest release has no tag_name")
-          version = tag.removeprefix("v")
-          if not any(asset.get("name") == "Anes-V1.jar" for asset in release.get("assets", [])):
-              raise SystemExit("Latest release is missing the Anes-V1.jar asset")
+          release = None
+          for attempt in range(30):
+              with urlopen(request, timeout=30) as response:
+                  release = json.load(response)
+              if release.get("tag_name") and any(asset.get("name") == "Anes-V1.jar" for asset in release.get("assets", [])):
+                  break
+              time.sleep(10)
+          else:
+              raise SystemExit("Latest release is still missing the Anes-V1.jar asset")
+          version = release["tag_name"].removeprefix("v")
           metadata = {
               "version": version,
               "build": 0,
