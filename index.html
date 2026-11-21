@@ -27,8 +27,8 @@
         <span class="eyebrow"><i class="dot"></i> Minecraft Client Mod · Fabric</span>
         <h1><span class="gradient">Dein Stil.</span><br>Dein Spiel.</h1>
         <p class="lead">Anes V1 bringt eigene Texturen, Cosmetics, HUD und praktische Tools in ein übersichtliches Menü. Richte deinen Client so ein, wie du spielen willst.</p>
-        <div class="actions"><a class="button primary" href="https://github.com/anes2321-pixel/Anes-V1/releases/download/v23.1.0/Anes-V1-23.1.jar">↓ Anes V1 herunterladen (.jar)</a><a class="button" href="#funktionen">Funktionen ansehen <span aria-hidden="true">⌄</span></a></div>
-        <p class="fine">Version 23.1.0 · Minecraft 1.21.11 · Fabric · Java 21 · Client-seitig</p>
+        <div class="actions"><a class="button primary" href="https://github.com/anes2321-pixel/Anes-V1/releases/latest/download/Anes-V1.jar">↓ Anes V1 herunterladen (.jar)</a><a class="button" href="#funktionen">Funktionen ansehen <span aria-hidden="true">⌄</span></a></div>
+        <p class="fine"><span id="latest-version">Version 23.1.0</span> · Minecraft 1.21.11 · Fabric · Java 21 · Client-seitig</p>
       </div>
       <div class="preview" aria-label="Vorschau des Anes V1 Menüs">
         <div class="screenbar"><i></i><i></i><i></i></div>
@@ -62,5 +62,11 @@
     </div></section>
   </main>
   <footer class="footer"><div class="wrap footerrow"><div><a class="brand" href="#top"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 96 50 50 96 4 50Z" fill="#171021" stroke="#b867ff" stroke-width="4"/><path d="M28 73 48 25h8l21 48H65l-5-13H43l-5 13Zm19-22h10l-5-13Z" fill="#fff"/></svg><span>Anes V1</span></a><div class="notice">Minecraft ist eine Marke von Mojang Studios. Dieses Projekt ist nicht offiziell mit Mojang oder Microsoft verbunden.</div></div><div><a href="https://github.com/anes2321-pixel/Anes-V1">GitHub</a> &nbsp;·&nbsp; <a href="https://github.com/anes2321-pixel/Anes-V1/releases">Releases</a></div></div></footer>
+  <script>
+    fetch('https://api.github.com/repos/anes2321-pixel/Anes-V1/releases/latest', {headers:{Accept:'application/vnd.github+json'}})
+      .then(response => response.ok ? response.json() : Promise.reject())
+      .then(release => { if (release.tag_name) document.getElementById('latest-version').textContent = `Version ${release.tag_name.replace(/^v/, '')}`; })
+      .catch(() => {});
+  </script>
 </body>
 </html>
